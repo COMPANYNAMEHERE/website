@@ -1,0 +1,117 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    cursor: none; /* Hide default cursor */
+    opacity: 1; /* Initial opacity */
+    transition: opacity 0.5s ease; /* Fade out effect */
+}
+
+/* Fade-in effect for GIF */
+.gif-container {
+    animation: fadeIn 5s forwards; /* Fade-in effect */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Fade-out keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        opacity: 1; /* End fully visible */
+    }
+}
+
+/* Flex Container for Title and Cursor Text */
+.container {
+    animation: fadeIn 10s forwards; /* Fade-in effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative; /* For absolute positioning of children */
+    z-index: 1; /* Ensure this container stays above the GIF */
+}
+
+/* GIF Container */
+.gif-container {
+    position: fixed; /* Positioning it fixed */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    width: 100%; /* Full width of the viewport */
+    height: 100%; /* Full height of the viewport */
+    z-index: 0; /* Lower z-index to stay behind title */
+    overflow: visible; /* Hide overflow if needed */
+    animation: bobble 16.5s ease-in-out infinite; /* Bobble effect */
+}
+
+/* Full-Screen GIF, 25% Larger with Bobble Effect */
+.full-gif {
+    position: absolute; /* Positioning absolutely within the container */
+    top: -12.5%; /* Shift upwards to compensate for larger height */
+    left: -12.5%; /* Shift to the left to compensate for larger width */    
+    width: 125%; /* 25% larger than fullscreen */
+    height: 125%; /* 25% larger than fullscreen */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    transform: translate(-50%, -50%); /* Adjust positioning to center */
+}
+
+
+/* Cursor Text Styles */
+.cursor-text {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999; /* High z-index to stay above GIF */
+    font-size: 16px;
+    color: #ecf0f1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    background-color: rgba(44, 62, 80, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Title Text Styles */
+.title-text {
+    position: absolute; /* Absolute positioning for the bobble effect */
+    font-size: 24px;
+    white-space: nowrap;
+    z-index: 1; /* Higher z-index to stay above GIF */
+    animation: bobble 16.5s ease-in-out infinite; /* Bobble effect */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 2s ease; /* Transition for fading */
+}
+
+
+/* Bobble Animation Keyframes */
+@keyframes bobble {
+    0%, 100% {
+        transform: translate(0, 0); /* Original position */
+    }
+    25% {
+        transform: translate(10px, -10px); /* Move right and up */
+    }
+    50% {
+        transform: translate(-10px, 10px); /* Move left and down */
+    }
+    75% {   
+        transform: translate(5px, -5px); /* Move right and up slightly */
+    }
+}
+
+/* Anchor Tag for Full Size Clickable Area */
+a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensure clickable area is above GIF */
+}

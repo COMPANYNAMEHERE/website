@@ -4,7 +4,7 @@ body, html {
     height: 100%;
     overflow: hidden;
     font-family: 'Courier New', monospace;
-    background-color: #383636;
+    background-color: #363636;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,8 @@ body, html {
 }
 
 .frame {
-    background-color: #fff;
+    background-color: #ffffff; /* Default white background */
+    border: 2px solid #0055a5; /* Blue border */
     height: 8vh;
     width: 90%; /* Adjusted width for better visibility */
     margin: 2vh 0; /* Increased margin for more space */
@@ -36,27 +37,26 @@ body, html {
     align-items: center;
     justify-content: center;
     font-size: 2.5vh;
-    color: #000;
+    color: #000; /* Black text */
     cursor: pointer;
-    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    opacity: 1; /* Ensure the buttons are visible initially */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
-.frame::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, #00c3ff, #ff00e1);
-    opacity: 0;
-    transition: opacity 0.3s;
+.frame:hover {
+    animation: pulse-colour 7.5s infinite; /* Smooth pulse effect on hover */
 }
 
-.frame:hover::before {
-    opacity: 0.7;
+@keyframes pulse-colour {
+    0%, 100% {
+        background-color: #0055a5; /* Original blue */
+    }
+    50% {
+        background-color: #007bff; /* Bright blue */
+    }
 }
 
 .frame-text, #title-text {

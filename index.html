@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
 </head>
 <body>
-    <div class="gif-container">
-        <img src="Assets/Index/sooth.gif" alt="Soothing GIF" class="gif-container">
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/UfESeyNiQlQ?autoplay=1&mute=1&controls=0&loop=1&playlist=UfESeyNiQlQ" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
     <div class="container" onclick="window.location.href='main.html'">
@@ -23,7 +23,7 @@
             cursorText.style.left = (e.clientX + 15) + 'px';
             cursorText.style.top = (e.clientY + 15) + 'px';
         });
-    
+
         // Fade out effect on click
         document.querySelector('.container').addEventListener('click', () => {
             document.body.style.opacity = '0'; // Fade out effect
@@ -31,23 +31,22 @@
                 window.location.href = 'main.html'; // Navigate after fade-out
             }, 500); // Match with the duration of the fade-out transition
         });
-        
-    
+
         // Fade in cursor text after 5 seconds
         window.onload = () => {
             const cursorText = document.querySelector('.cursor-text');
             cursorText.style.opacity = '0'; // Initially hidden
-    
+
             // Set timeout for 5 seconds before starting the fade-in for cursor text
             setTimeout(() => {
                 cursorText.style.transition = 'opacity 2s ease'; // Set transition for smooth fade
                 cursorText.style.opacity = '1'; // Fade in the cursor text
             }, 7000); // Wait 5 seconds
-    
+
             // Fade in title text after 5 seconds
             const titleText = document.querySelector('.title-text');
             titleText.style.opacity = '0'; // Initially hidden
-    
+
             // Set timeout for 5 seconds before starting the fade-in for title text
             setTimeout(() => {
                 titleText.style.transition = 'opacity 2s ease'; // Set transition for smooth fade
@@ -55,7 +54,5 @@
             }, 5000); // Wait 5 seconds
         };
     </script>
-    
-    
 </body>
 </html>

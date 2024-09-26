@@ -1,0 +1,162 @@
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Patrick Hand', cursive; /* Playful font for a fun mood */
+    line-height: 1.6;
+    background-color: #e0f7fa; /* Light baby blue background */
+    color: #333; /* Default text color */
+}
+
+/* Container */
+.container {
+    max-width: 1400px; /* Spacious layout */
+    margin: 0 auto;
+    padding: 0 40px; /* Clean padding */
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Arrange child elements in a column */
+    height: 100vh; /* Full viewport height for centering */
+}
+
+/* Fade-in keyframes */
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /* Start hidden */
+    }
+    100% {
+        opacity: 1; /* Fully visible */
+    }
+}
+
+/* Slide down keyframes */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%); /* Start above the screen */
+    }
+    100% {
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Slide up keyframes */
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%); /* Start below the screen */
+    }
+    100% {
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Header */
+header {
+    background-color: var(--blue); /* Deep blue header */
+    color: #fff;
+    padding: 30px 0; /* Ample padding for cleaner look */
+    text-align: center;
+    flex: 0 1 auto; /* Prevent flex-grow */
+    animation: slideDown 2s ease forwards; /* Slide down animation */
+}
+
+/* Navigation */
+nav {
+    opacity: 0; /* Start hidden for fade-in */
+    animation: fadeIn 2s forwards 2s; /* Fade-in effect for navigation after header */
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    background-color: var(--nav-blue); /* Darker blue for navigation */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Styles */
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3em;
+    padding: 20px 0;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+/* Navigation Hover Effect */
+nav ul li a:hover {
+    background-color: var(--neon-pink); /* Neon pink on hover */
+}
+
+/* Main Content */
+main {
+    flex: 1; /* Allow main to grow and fill available space */
+    display: flex; /* Enable Flexbox for main content */
+    flex-direction: column; /* Arrange child elements in a column */
+    justify-content: center; /* Centre content vertically */
+    align-items: center; /* Centre content horizontally */
+    text-align: center; /* Center text alignment */
+    padding: 60px 20px;
+    opacity: 0; /* Start hidden for fade-in */
+    animation: fadeIn 2s forwards 0.5s; /* Fade-in effect for main content */
+}
+
+/* Main Content Styles */
+main h2 {
+    font-size: 2.5em;
+    color: var(--electric-blue); /* Electric blue for section headings */
+    opacity: 0; /* Start hidden for fade-in */
+    animation: fadeIn 2s forwards 1s; /* Fade-in effect for h2 with delay */
+}
+
+main p {
+    font-size: 1.2em;
+    color: #666;
+    max-width: 900px; /* Wider content area */
+    margin: 30px auto;
+    opacity: 0; /* Start hidden for fade-in */
+    animation: fadeIn 2s forwards 1.5s; /* Fade-in effect for paragraph with delay */
+}
+
+/* Footer */
+footer {
+    background-color: var(--blue); /* Deep blue footer */
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    animation: slideUp 2s ease forwards; /* Slide up animation */
+}
+
+/* Footer Styles */
+footer p {
+    margin: 0;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
+/* Colours */
+:root {
+    --blue: #005f99; /* Custom deep blue */
+    --light-blue: #e0f7fa; /* Baby blue background */
+    --nav-blue: #003f6b; /* Darker blue for navigation */
+    --neon-pink: #ff5e99; /* Neon pink */
+    --lime-green: #32cd32; /* Lime green */
+    --electric-blue: #00bfff; /* Electric blue */
+    --brown: #8B4513; /* New brown colour */
+}

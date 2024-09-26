@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quirky Film Student Portfolio</title>
+    <link rel="stylesheet" href="mainpage-contender.css"> <!-- Added CSS reference -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+</head>
+<body>
+    <div id="title">
+        <span id="title-text">What would you like to see?</span>
+    </div>
+    <div id="filmStrip"></div>
+    <div id="content">
+        <h1>Your Name</h1>
+        <p>Aspiring Filmmaker & Media Artist</p>
+        <div id="projectContent"></div>
+    </div>
+    <button id="closeButton">X</button>
+
+    <script>
+        const projects = [
+            { title: "Short Film", description: "A coming-of-age story set in a dystopian future." },
+            { title: "Music Video", description: "An experimental visual journey through sound." },
+            { title: "Documentary", description: "Exploring the hidden world of urban beekeeping." },
+            { title: "Animation", description: "A hand-drawn tale of friendship between unlikely creatures." },
+            { title: "Interactive Art", description: "A web-based experience blending film and user input." }
+        ];
+
+        const filmStrip = document.getElementById('filmStrip');
+        const content = document.getElementById('content');
+        const projectContent = document.getElementById('projectContent');
+        const closeButton = document.getElementById('closeButton');
+        const titleText = document.getElementById('title-text');
+
+        projects.forEach((project, index) => {
+            const frame = document.createElement('div');
+            frame.className = 'frame';
+            const textSpan = document.createElement('span');
+            textSpan.className = 'frame-text';
+            textSpan.textContent = project.title;
+            frame.appendChild(textSpan);
+            frame.addEventListener('click', () => showProject(index));
+            frame.addEventListener('mouseenter', () => enhancedHoverEffect(frame));
+            frame.addEventListener('mouseleave', () => resetAnimation(frame));
+            frame.addEventListener('mousemove', (e) => gravitateText(e, textSpan, frame));
+            filmStrip.appendChild(frame);
+        });
+
+        function enhancedHoverEffect(frame) {
+            gsap.to(frame, {
+                duration: 0.3,
+                scale: 1.1,
+                zIndex: 10,
+                boxShadow: '0 0 20px rgba(255,255,255,0.5)',
+                ease: "power2.out",
+            });
+
+            // Glitch effect
+            const glitchDuration = 0.1;
+            const glitchRepeats = 3;
+
+            for (let i = 0; i < glitchRepeats; i++) {
+                gsap.to(frame, {
+                    duration: glitchDuration,
+                    x: gsap.utils.random(-5, 5),
+                    y: gsap.utils.random(-5, 5),
+                    skewX: gsap.utils.random(-3, 3),
+                    skewY: gsap.utils.random(-3, 3),
+                    opacity: gsap.utils.random(0.8, 1),
+                    delay: i * glitchDuration * 2,
+                    ease: "power1.inOut",
+                });
+
+                gsap.to(frame, {
+                    duration: glitchDuration,
+                    x: 0,
+                    y: 0,
+                    skewX: 0,
+                    skewY: 0,
+                    opacity: 1,
+                    delay: (i * glitchDuration * 2) + glitchDuration,
+                    ease: "power1.inOut",
+                });
+            }
+        }
+
+        function resetAnimation(frame) {
+            gsap.to(frame, {
+                duration: 0.3,
+                scale: 1,
+                zIndex: 1,
+                boxShadow: 'none',
+                x: 0,
+                y: 0,
+                skewX: 0,
+                skewY: 0,
+                opacity: 1,
+                ease: "power2.out",
+            });
+            gsap.to(frame.querySelector('.frame-text'), {
+                duration: 0.3,
+                x: 0,
+                y: 0,
+            });
+        }
+
+        function gravitateText(e, textElement, frame) {
+            const rect = frame.getBoundingClientRect();
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            const maxDistance = 10; // Reduced from 20
+            const distanceX = (mouseX - centerX) / centerX * maxDistance;
+            const distanceY = (mouseY - centerY) / centerY * maxDistance;
+
+            gsap.to(textElement, {
+                duration: 0.3,
+                x: distanceX,
+                y: distanceY,
+                ease: "power2.out",
+            });
+        }
+
+        function showProject(index) {
+            const project = projects[index];
+            projectContent.innerHTML = `
+                <h2>${project.title}</h2>
+                <p>${project.description}</p>
+                <img src="/api/placeholder/400/300" alt="${project.title} placeholder">
+            `;
+            gsap.to(filmStrip, { opacity: 0, duration: 0.5 });
+            gsap.to(content, { opacity: 1, duration: 0.5, delay: 0.5, onComplete: () => {
+                content.style.pointerEvents = 'auto';
+                closeButton.style.display = 'block';
+            }});
+        }
+
+        closeButton.addEventListener('click', () => {
+            gsap.to(content, { opacity: 0, duration: 0.5, onComplete: () => {
+                content.style.pointerEvents = 'none';
+                closeButton.style.display = 'none';
+            }});
+            gsap.to(filmStrip, { opacity: 1, duration: 0.5, delay: 0.5 });
+        });
+
+        // Animate title text
+        document.addEventListener('mousemove', (e) => {
+            const rect = titleText.parentElement.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const maxDistance = 30;
+            const distanceX = (e.clientX - centerX) / window.innerWidth * maxDistance;
+            const distanceY = (e.clientY - centerY) / window.innerHeight * maxDistance;
+
+            gsap.to(titleText, {
+                duration: 0.3,
+                x: distanceX,
+                y: distanceY,
+                ease: "power2.out",
+            });
+        });
+
+        // Create a film reel effect
+        gsap.to('.frame', {
+            x: "+=10",
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+            duration: 0.5,
+            stagger: {
+                each: 0.1,
+                from: "random"
+            }
+        });
+    </script>
+</body>
+</html>

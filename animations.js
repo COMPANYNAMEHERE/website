@@ -65,12 +65,23 @@ function createFrame(title) {
 function addHoverEffects(frame) {
     const text = frame.querySelector('.frame-text');
     frame.addEventListener('mouseenter', () => {
-        gsap.to(frame, { duration: 0.4, scale: 1.1, zIndex: 10, boxShadow: '0 0 15px rgba(255,255,255,0.5)', ease: "power3.out" });
-        gsap.to(text, { duration: 0.3, scale: 1.1, ease: "power2.out" });
+        gsap.to(frame, { duration: 0.3, scale: 1.05, zIndex: 10, boxShadow: '0 0 15px rgba(255,255,255,0.5)', ease: "power3.out" });
+        gsap.to(text, { duration: 0.3, scale: 1.05, ease: "power2.out" });
+        shakeFrame(frame);
         glitchEffect(frame);
     });
     frame.addEventListener('mouseleave', () => resetAnimation(frame));
     frame.addEventListener('mousemove', (e) => gravitate(e, frame));
+}
+
+function shakeFrame(frame) {
+    gsap.to(frame, {
+        duration: 0.3,
+        x: 5,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: 3,
+    });
 }
 
 function glitchEffect(frame) {
@@ -100,7 +111,7 @@ function glitchEffect(frame) {
 
 function resetAnimation(frame) {
     const text = frame.querySelector('.frame-text');
-    gsap.to(frame, { duration: 0.4, scale: 1, zIndex: 1, boxShadow: 'none', ease: "power3.out" });
+    gsap.to(frame, { duration: 0.3, scale: 1, zIndex: 1, boxShadow: 'none', ease: "power3.out" });
     gsap.to(text, { duration: 0.3, scale: 1, ease: "power2.out" });
 }
 

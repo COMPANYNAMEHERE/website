@@ -29,7 +29,7 @@ body, html {
 
 .frame {
     background-color: #ffffff; /* Default white background */
-    border: 2px solid #0055a5; /* Blue border */
+    border: none; /* Remove border */
     height: 8vh;
     width: 90%; /* Adjusted width for better visibility */
     margin: 2vh 0; /* Increased margin for more space */
@@ -42,7 +42,7 @@ body, html {
     position: relative;
     overflow: hidden;
     opacity: 1; /* Ensure the buttons are visible initially */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
     transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
@@ -78,10 +78,11 @@ body, html {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: none;
-    border: none;
+    background: none; /* No background */
+    border: none; /* Remove border */
     color: #fff;
     font-size: 24px;
     cursor: pointer;
     display: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Added shadow for visibility */
 }

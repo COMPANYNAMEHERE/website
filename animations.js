@@ -1,6 +1,6 @@
 const projects = [
-    { title: "YouTube Documentaries", link: "new_documentaries.html" },
-    { title: "Music Videos", link: "new_music_videos.html" },
+    { title: "YouTube Documentaries", link: "Documentaries.html" },
+    { title: "Music Videos", link: "Music_Videos.html" },
     { title: "Interviews", link: "new_interviews.html" },
     { title: "Photo Scanning", link: "new_photo_scanning.html" },
     { title: "Whimsical Meanderings", link: "new_whimsical_meanderings.html" }
@@ -75,38 +75,11 @@ function addHoverEffects(frame) {
 }
 
 function shakeFrame(frame) {
-    gsap.to(frame, {
-        duration: 0.3,
-        x: 5,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: 3,
-    });
+
 }
 
 function glitchEffect(frame) {
-    for (let i = 0; i < 2; i++) {
-        gsap.to(frame, {
-            duration: 0.2,
-            x: gsap.utils.random(-1, 1),
-            y: gsap.utils.random(-1, 1),
-            skewX: gsap.utils.random(-1, 1),
-            skewY: gsap.utils.random(-1, 1),
-            opacity: gsap.utils.random(0.9, 1),
-            delay: i * 0.3,
-            ease: "power1.inOut",
-        });
-        gsap.to(frame, {
-            duration: 0.2,
-            x: 0,
-            y: 0,
-            skewX: 0,
-            skewY: 0,
-            opacity: 1,
-            delay: (i * 0.3) + 0.2,
-            ease: "power1.inOut",
-        });
-    }
+
 }
 
 function resetAnimation(frame) {

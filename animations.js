@@ -1,5 +1,5 @@
 const projects = [
-    { title: "YouTube Documentaries", link: "Documentaries.html" },
+    { title: "YouTube Documentaries", link: "documentaries.html" },
     { title: "Music Videos", link: "Music_Videos.html" },
     { title: "Interviews", link: "new_interviews.html" },
     { title: "Photo Scanning", link: "new_photo_scanning.html" },

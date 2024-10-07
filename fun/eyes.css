@@ -1,0 +1,61 @@
+:root {
+    --skin-tone-1: #f8c1bb;
+    --skin-tone-2: #e9a3a8;
+    --eye-color: white;
+    --pupil-color: black;
+    --background-gradient: linear-gradient(135deg, var(--skin-tone-1), var(--skin-tone-2));
+}
+
+body {
+    background: var(--background-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.eye-container {
+    position: relative;
+    width: 50vw;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.eye {
+    width: 10vw;
+    height: 10vw;
+    background: var(--eye-color);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.pupil {
+    width: 30%;
+    height: 30%;
+    background: var(--pupil-color);
+    border-radius: 50%;
+    position: absolute;
+}
+
+@keyframes blink {
+    0% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(0.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+.eye.blink {
+    animation: blink 0.3s ease;
+}

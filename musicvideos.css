@@ -1,0 +1,208 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #363636;
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Main Title */
+#main-title {
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#main-title.visible {
+    opacity: 1;
+}
+
+/* Container for Music Video Boxes */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+/* Music Video Boxes */
+.music-video {
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: transform 1s ease-out, opacity 1s ease-out;
+    transform-origin: center center;
+    max-width: 200px;
+}
+
+.music-video.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.music-video h2 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.music-video img {
+    width: 200px;
+    height: 112px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect on Music Video Boxes */
+.music-video:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease, visibility 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup-content {
+    background-color: #F0F8FF;
+    color: #000000;
+    padding: 30px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transform-origin: center center;
+    transform: scale(0);
+    transition: all 0.5s ease;
+    position: relative;
+    opacity: 0;
+}
+
+.popup-content.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.popup-content.closing {
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #FF6347;
+}
+
+#popup-title {
+    margin-top: 0;
+    font-size: 28px;
+    color: #000000;
+}
+
+#popup-description {
+    margin: 20px 0;
+    font-size: 18px;
+    color: #000000;
+}
+
+#popup-video iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #FFFFFF;
+    color: #363636;
+    border: none;
+    padding: 15px 20px;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1s ease-in, transform 1s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.back-button.visible {
+    opacity: 1;
+}
+
+.back-button.slide-left {
+    transform: translateX(-100vw);
+    transition: transform 0.5s ease-out;
+}
+
+.back-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Background Blur */
+body.blurred > *:not(.popup-overlay):not(.back-button) {
+    filter: blur(5px);
+    transition: filter 0.5s ease;
+}
+
+body > *:not(.popup-overlay):not(.back-button) {
+    transition: filter 0.5s ease;
+}
+
+/* Media Queries for Small Screens */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .music-video {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    #popup-video iframe {
+        height: 250px;
+    }
+    .back-button {
+        font-size: 24px;
+        padding: 10px 15px;
+    }
+}

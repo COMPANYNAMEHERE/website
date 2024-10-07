@@ -1,6 +1,6 @@
 const projects = [
     { title: "YouTube Documentaries", link: "documentaries.html" },
-    { title: "Music Videos", link: "Music_Videos.html" },
+    { title: "Music Videos", link: "musicvideos.html" },
     { title: "Interviews", link: "new_interviews.html" },
     { title: "Photo Scanning", link: "new_photo_scanning.html" },
     { title: "Whimsical Meanderings", link: "new_whimsical_meanderings.html" }
@@ -34,11 +34,17 @@ function createButtons() {
                 duration: 1,
                 y: 100,
                 opacity: 0,
-                ease: "power2.out",
-                onComplete: () => window.location.href = project.link
+                ease: "power2.inOut",
+                stagger: 0.1,
+                onComplete: () => {
+                    window.location.href = project.link;
+                }
             });
         });
-        addHoverEffects(frame);
+        // Disable hover effects during animation out
+            frame.addEventListener('click', () => frame.removeEventListener('mouseenter', onMouseEnter));
+            frame.addEventListener('click', () => frame.removeEventListener('mouseleave', onMouseLeave));
+            addHoverEffects(frame);
         filmStrip.appendChild(frame);
         gsap.set(frame, { opacity: 0, y: -50 });
         gsap.to(frame, {
@@ -63,6 +69,19 @@ function createFrame(title) {
 }
 
 function addHoverEffects(frame) {
+    function onMouseEnter() {
+        const text = frame.querySelector('.frame-text');
+        gsap.to(frame, { duration: 0.3, scale: 1.05, zIndex: 10, boxShadow: '0 0 15px rgba(255,255,255,0.5)', ease: "power3.out" });
+        gsap.to(text, { duration: 0.3, scale: 1.05, ease: "power2.out" });
+        shakeFrame(frame);
+        glitchEffect(frame);
+    }
+    function onMouseLeave() {
+        resetAnimation(frame);
+    }
+    frame.addEventListener('mouseenter', onMouseEnter);
+    frame.addEventListener('mouseleave', onMouseLeave);
+    frame.addEventListener('mousemove', (e) => gravitate(e, frame));
     const text = frame.querySelector('.frame-text');
     frame.addEventListener('mouseenter', () => {
         gsap.to(frame, { duration: 0.3, scale: 1.05, zIndex: 10, boxShadow: '0 0 15px rgba(255,255,255,0.5)', ease: "power3.out" });
@@ -75,11 +94,11 @@ function addHoverEffects(frame) {
 }
 
 function shakeFrame(frame) {
-
+    // Function implementation needed
 }
 
 function glitchEffect(frame) {
-
+    // Function implementation needed
 }
 
 function resetAnimation(frame) {
